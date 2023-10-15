@@ -23,6 +23,7 @@ Route::get('/', [LoginController::class, 'login'])->name('login');
 Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
 Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
 
+Route::get('/dashboard', [PegawaiController::class, 'dashboard'])->name('dashboard')->middleware('auth');
 Route::get('/pegawai', [PegawaiController::class, 'pegawai'])->name('pegawai')->middleware('auth');
 Route::get('/role', [PegawaiController::class, 'role'])->name('role')->middleware('auth');
 Route::get('/absensi', [PegawaiController::class, 'absensi'])->name('absensi')->middleware('auth');

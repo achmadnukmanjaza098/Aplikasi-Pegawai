@@ -29,16 +29,9 @@ class LoginController extends Controller
 
         // Coba untuk mengotentikasi pengguna dengan alamat email dan kata sandi yang diberikan.
         if (Auth::attempt($userPass)) {
-            // Jika otentikasi berhasil, periksa peran pengguna.
-            if (Auth::user()->role_id == 1) {
-                // Jika peran pengguna adalah 1, arahkan ke halaman "/pegawai".
-                return redirect('/pegawai');
-            } else {
-                // Jika peran pengguna bukan 1, arahkan ke halaman "/absensi".
-                return redirect('/absensi');
-            }
+            return redirect('/dashboard');
         } else {
-            // Jika otentikasi gagal, tampilkan pesan kesalahan dan arahkan kembali ke halaman awal.
+            // Jika otentikasi gagal, tampilkan pesan kesalahan dan arahkan kembali ke halaman login.
             Session::flash('error', 'Email atau Password Salah');
             return redirect('/');
         }
@@ -46,7 +39,7 @@ class LoginController extends Controller
 
     public function actionlogout()
     {
-        // Logout pengguna dan arahkan kembali ke halaman awal (biasanya halaman login).
+        // Logout pengguna dan arahkan kembali ke halaman awal (halaman login).
         Auth::logout();
         return redirect('/');
     }
